@@ -24,7 +24,13 @@ namespace core
         }
 
     private:
-        enum LockState { Locked, Unlocked };
+
+        enum LockState
+        {
+            Locked,
+            Unlocked
+        };
+
         boost::atomic<LockState> m_state;
     };
 }

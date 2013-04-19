@@ -50,9 +50,9 @@ namespace core
 }
 
 
-#define LogTrace(logger, title, message) LogWriter((logger), core::ILogger::Severity::Trace, (title), (message), SOURCE_LOCATION)
-#define LogDebug(logger, title, message) LogWriter((logger), core::ILogger::Severity::Debug, (title), (message), SOURCE_LOCATION)
-#define LogInfo(logger, title, message) LogWriter((logger), core::ILogger::Severity::Info, (title), (message), SOURCE_LOCATION)
-#define LogWarning(logger, title, message) LogWriter((logger), core::ILogger::Severity::Warning, (title), (message), SOURCE_LOCATION)
-#define LogError(logger, title, message) LogWriter((logger), core::ILogger::Severity::Error, (title), (message), SOURCE_LOCATION)
-#define LogAssert(logger, title, message) LogWriter((logger), core::ILogger::Severity::Assert, (title), (message), SOURCE_LOCATION)
+#define LogTrace(logger, title, message) core::LogWriter((logger), core::LogLevel::Trace, (title), (message), SOURCE_LOCATION)
+#define LogDebug(logger, title, message) core::LogWriter((logger), core::LogLevel::Debug, (title), (message), SOURCE_LOCATION)
+#define LogInfo(logger, title, message) core::LogWriter((logger), core::LogLevel::Info, (title), (message), SOURCE_LOCATION)
+#define LogWarning(logger, title, message) core::LogWriter((logger), core::LogLevel::Warning, (title), (message), SOURCE_LOCATION)
+#define LogError(logger, title, message) core::LogWriter((logger), core::LogLevel::Error, (title), (message), SOURCE_LOCATION)
+#define LogAssert(logger, title, message) core::LogWriter((logger), core::LogLevel::Assert, (title), (message), SOURCE_LOCATION)

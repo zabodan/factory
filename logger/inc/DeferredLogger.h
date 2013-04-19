@@ -7,7 +7,7 @@ namespace core
     {
     public:
 
-        DeferredLogger(const ILoggerPtr& logger) : m_logger(logger)
+        explicit DeferredLogger(const ILoggerPtr& logger) : m_logger(logger)
         {
         }
 

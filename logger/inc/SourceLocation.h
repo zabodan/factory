@@ -30,4 +30,4 @@ namespace core
     }
 }
 
-#define SOURCE_LOCATION SourceLocation(__FILE__, __FUNCTION__, __LINE__)
+#define SOURCE_LOCATION core::SourceLocation(__FILE__, __FUNCTION__, __LINE__)

@@ -1,5 +1,5 @@
 #pragma once
-#include <boost/lockfree/queue.hpp>
+#include "MPSCQueue.h"
 #include <boost/thread.hpp>
 #include <boost/function.hpp>
 #include <boost/atomic.hpp>
@@ -7,7 +7,6 @@
 
 namespace core
 {
-
     class WorkerThread
     {
     public:
@@ -25,6 +24,6 @@ namespace core
 
         std::unique_ptr<boost::thread> m_thread;
         boost::atomic_bool m_stopRequested;
-        boost::lockfree::queue<Task> m_tasks;
+        MPSCQueue<Task> m_tasks;
     };
 }
