@@ -11,8 +11,8 @@ namespace core
         MPSCQueue();
         ~MPSCQueue();
 
-        bool enqueue(const T& value);
-        bool dequeue(T& result);
+        bool push(const T& value);
+        bool pop(T& result);
 
     private:
 
@@ -57,7 +57,7 @@ namespace core
     }
 
     template <typename T>
-    inline bool MPSCQueue<T>::enqueue(const T& value)
+    inline bool MPSCQueue<T>::push(const T& value)
     {
         Node* tmp = new (std::nothrow) Node(value);
         if (tmp)
@@ -71,7 +71,7 @@ namespace core
     }
 
     template <typename T>
-    inline bool MPSCQueue<T>::dequeue(T& result)
+    inline bool MPSCQueue<T>::pop(T& result)
     {
         Node* theFirst = m_head;
         Node* theNext = m_head->next;

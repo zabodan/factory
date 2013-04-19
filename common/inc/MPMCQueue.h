@@ -12,8 +12,8 @@ namespace core
         MPMCQueue();
         ~MPMCQueue();
 
-        bool enqueue(const T& value);
-        bool dequeue(T& result);
+        bool push(const T& value);
+        bool pop(T& result);
 
     private:
 
@@ -63,7 +63,7 @@ namespace core
     }
 
     template <typename T>
-    inline bool MPMCQueue<T>::enqueue(const T& value)
+    inline bool MPMCQueue<T>::push(const T& value)
     {
         Node* tmp = new (std::nothrow) Node(value);
         if (tmp)
@@ -77,7 +77,7 @@ namespace core
     }
 
     template <typename T>
-    inline bool MPMCQueue<T>::dequeue(T& result)
+    inline bool MPMCQueue<T>::pop(T& result)
     {
         while (m_consumerLock.exchange(true, boost::memory_order_acquire))
         {

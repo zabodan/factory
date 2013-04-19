@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(rboost)
+project(factory)
 
 
 set(BOOST_ROOT "W:/devel/_libs/boost_1_53_0")
@@ -15,4 +15,5 @@ enable_testing()
 
 add_subdirectory(common)
 add_subdirectory(logger)
+add_subdirectory(network)
 add_subdirectory(tests)

@@ -17,7 +17,7 @@ WorkerThread::~WorkerThread()
 
 bool WorkerThread::enqueue(const Task& task)
 {
-    return m_tasks.enqueue(task);
+    return m_tasks.push(task);
 }
 
 void WorkerThread::run()
@@ -27,7 +27,7 @@ void WorkerThread::run()
     {
         for (size_t i = 0; i < 20; ++i)
         {
-            if (m_tasks.dequeue(task))
+            if (m_tasks.pop(task))
             {
                 task();
             }
@@ -36,7 +36,7 @@ void WorkerThread::run()
         boost::this_thread::yield();
     }
 
-    while (m_tasks.dequeue(task))
+    while (m_tasks.pop(task))
     {
         task();
     }
