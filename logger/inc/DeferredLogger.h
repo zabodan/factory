@@ -7,7 +7,7 @@ namespace core
     {
     public:
 
-        DeferredLogger(const ILoggerPtr& logger) : m_backendLogger(logger)
+        DeferredLogger(const ILoggerPtr& logger) : m_logger(logger)
         {
         }
 
@@ -15,6 +15,6 @@ namespace core
 
         void write(const LogLevel &level, const std::string &title, const std::string &message, const SourceLocation &location) override;
 
-        ILoggerPtr m_backendLogger;
+        ILoggerPtr m_logger;
     };
 }
