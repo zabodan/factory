@@ -22,11 +22,11 @@ BOOST_AUTO_TEST_CASE(MoreRecentSeqNumTest)
 BOOST_AUTO_TEST_CASE(TestAck33)
 {
     core::ack33_t ack33; // templated case, one of { 9, 17, 33, 65 }
-    ack33.updateForSeqNum(1); BOOST_CHECK(ack33.ackBits() == 0x0001 && ack33.latestSeqNum() == 1); // bits = 00000001, ack = 1
-    ack33.updateForSeqNum(3); BOOST_CHECK(ack33.ackBits() == 0x0006 && ack33.latestSeqNum() == 3); // bits = 00000110, ack = 3
-    ack33.updateForSeqNum(2); BOOST_CHECK(ack33.ackBits() == 0x0007 && ack33.latestSeqNum() == 3); // bits = 00000111, ack = 3
-    ack33.updateForSeqNum(7); BOOST_CHECK(ack33.ackBits() == 0x0078 && ack33.latestSeqNum() == 7); // bits = 01111000, ack = 7
-    ack33.updateForSeqNum(6); BOOST_CHECK(ack33.ackBits() == 0x0079 && ack33.latestSeqNum() == 7); // bits = 01111001, ack = 7
+    ack33.updateForSeqNum(1); BOOST_CHECK(ack33.ackBits() == 0x0001 && ack33.lastSeqNum() == 1); // bits = 00000001, ack = 1
+    ack33.updateForSeqNum(3); BOOST_CHECK(ack33.ackBits() == 0x0006 && ack33.lastSeqNum() == 3); // bits = 00000110, ack = 3
+    ack33.updateForSeqNum(2); BOOST_CHECK(ack33.ackBits() == 0x0007 && ack33.lastSeqNum() == 3); // bits = 00000111, ack = 3
+    ack33.updateForSeqNum(7); BOOST_CHECK(ack33.ackBits() == 0x0078 && ack33.lastSeqNum() == 7); // bits = 01111000, ack = 7
+    ack33.updateForSeqNum(6); BOOST_CHECK(ack33.ackBits() == 0x0079 && ack33.lastSeqNum() == 7); // bits = 01111001, ack = 7
 
     std::vector<uint16_t> packets;
     ack33.forEachAckedSeqNum([&](uint16_t seqNum){
