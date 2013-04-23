@@ -1,4 +1,4 @@
-include_directories(inc)
+include_directories("inc")
 
 file(GLOB Common_SRC "src/*")
 file(GLOB Common_INC "inc/*.h")

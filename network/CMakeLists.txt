@@ -1,4 +1,4 @@
-include_directories(inc)
+include_directories("inc")
 
 file(GLOB Network_SRC "src/*")
 file(GLOB Network_INC "inc/*.h")
