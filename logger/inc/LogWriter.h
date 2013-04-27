@@ -41,10 +41,10 @@ namespace core
 
     protected:
 
-        const ILoggerPtr m_logger;
-        const LogLevel m_level;
-        const SourceLocation m_location;
-        const std::string m_title;
+        const ILoggerPtr& m_logger;
+        const LogLevel& m_level;
+        const SourceLocation& m_location;
+        const std::string& m_title;
         boost::format m_message;
     };
 }

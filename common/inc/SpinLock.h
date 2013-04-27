@@ -23,6 +23,8 @@ namespace core
             m_state.store(Unlocked, boost::memory_order_release);
         }
 
+        typedef boost::unique_lock<SpinLock> Guard;
+
     private:
 
         enum LockState
