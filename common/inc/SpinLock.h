@@ -8,7 +8,9 @@ namespace core
     {
     public:
 
-        SpinLock() : m_state(Unlocked) {}
+        SpinLock() : m_state(Unlocked)
+        {
+        }
 
         void lock()
         {

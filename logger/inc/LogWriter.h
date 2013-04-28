@@ -9,26 +9,23 @@ namespace core
     {
     public:
 
-        LogWriter(
-            const ILoggerPtr& logger,
-            const LogLevel& level,
-            const std::string& title,
-            const std::string& message,
-            const SourceLocation& location)
-          : m_logger(logger),
-            m_level(level),
-            m_title(title),
-            m_message(message),
-            m_location(location)
+        LogWriter(const ILoggerPtr& logger, const LogLevel& level, const std::string& message, const SourceLocation& location)
+            : m_logger(logger), m_level(level), m_message(message), m_location(location)
         {
-            m_message.exceptions(boost::io::all_error_bits ^ (boost::io::too_many_args_bit | boost::io::too_few_args_bit));
+            disableFormatExceptions();
+        }
+
+        LogWriter(const ILoggerPtr& logger, const LogLevel& level, std::string&& message, const SourceLocation& location)
+            : m_logger(logger), m_level(level), m_message(std::move(message)), m_location(location)
+        {
+            disableFormatExceptions();
         }
 
         ~LogWriter()
         {
             if (m_logger)
             {
-                m_logger->write(m_level, m_title, m_message.str(), m_location);
+                m_logger->write(m_level, m_message.str(), m_location);
             }
         }
 
@@ -41,18 +38,22 @@ namespace core
 
     protected:
 
-        const ILoggerPtr& m_logger;
-        const LogLevel& m_level;
-        const SourceLocation& m_location;
-        const std::string& m_title;
+        void disableFormatExceptions()
+        {
+            m_message.exceptions(boost::io::all_error_bits ^ (boost::io::too_many_args_bit | boost::io::too_few_args_bit));
+        }
+
+        const ILoggerPtr m_logger;
+        const LogLevel m_level;
+        const SourceLocation m_location;
         boost::format m_message;
     };
 }
 
 
-#define LogTrace(logger, title, message) core::LogWriter((logger), core::LogLevel::Trace, (title), (message), SOURCE_LOCATION)
-#define LogDebug(logger, title, message) core::LogWriter((logger), core::LogLevel::Debug, (title), (message), SOURCE_LOCATION)
-#define LogInfo(logger, title, message) core::LogWriter((logger), core::LogLevel::Info, (title), (message), SOURCE_LOCATION)
-#define LogWarning(logger, title, message) core::LogWriter((logger), core::LogLevel::Warning, (title), (message), SOURCE_LOCATION)
-#define LogError(logger, title, message) core::LogWriter((logger), core::LogLevel::Error, (title), (message), SOURCE_LOCATION)
-#define LogAssert(logger, title, message) core::LogWriter((logger), core::LogLevel::Assert, (title), (message), SOURCE_LOCATION)
+#define LogTrace(logger, message) core::LogWriter((logger), core::LogLevel::Trace, (message), SOURCE_LOCATION)
+#define LogDebug(logger, message) core::LogWriter((logger), core::LogLevel::Debug, (message), SOURCE_LOCATION)
+#define LogInfo(logger, message) core::LogWriter((logger), core::LogLevel::Info, (message), SOURCE_LOCATION)
+#define LogWarning(logger, message) core::LogWriter((logger), core::LogLevel::Warning, (message), SOURCE_LOCATION)
+#define LogError(logger, message) core::LogWriter((logger), core::LogLevel::Error, (message), SOURCE_LOCATION)
+#define LogAssert(logger, message) core::LogWriter((logger), core::LogLevel::Assert, (message), SOURCE_LOCATION)

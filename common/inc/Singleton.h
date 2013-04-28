@@ -1,6 +1,5 @@
 #pragma once
 #include "SpinLock.h"
-#include <boost/atomic.hpp>
 #include <boost/noncopyable.hpp>
 #include <memory>
 
@@ -58,6 +57,7 @@ namespace core
     class DependsOn
     {
     public:
+
         DependsOn()
         {
             R::instance();
@@ -65,7 +65,7 @@ namespace core
         }
 
     private:
+
         std::shared_ptr<R> m_required;
     };
-
 }

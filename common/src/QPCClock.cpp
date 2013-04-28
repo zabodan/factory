@@ -3,6 +3,7 @@
 
 using namespace core;
 
+
 // static
 QPCClock::time_point QPCClock::now()
 {

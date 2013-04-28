@@ -1,5 +1,5 @@
 include_directories("inc")
-include_directories("../common/inc")
+include_directories("${PROJECT_SOURCE_DIR}/common/inc")
 
 file(GLOB Logger_SRC "src/*")
 file(GLOB Logger_INC "inc/*.h")

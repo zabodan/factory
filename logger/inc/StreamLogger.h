@@ -16,10 +16,10 @@ namespace core
 
     protected:
 
-        void write(const LogLevel &level, const std::string &title, const std::string &message, const SourceLocation &location) override
+        void write(const LogLevel &level, const std::string &message, const SourceLocation &location) override
         {
             boost::lock_guard<SpinLock> guard(m_lock);
-            m_stream.get() << level << title << ": \"" << message << "\" -- " << location << std::endl;
+            m_stream.get() << level << "\"" << message << "\" -- " << location << std::endl;
         }
 
         typedef boost::reference_wrapper<Stream> StreamRef;

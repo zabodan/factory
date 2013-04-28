@@ -3,11 +3,13 @@
 
 using namespace core;
 
+
 WorkerThread::WorkerThread()
 {
     m_stopRequested.store(false, boost::memory_order_release);
     m_thread.reset(new boost::thread(boost::bind(&WorkerThread::run, this)));
 }
+
 
 WorkerThread::~WorkerThread()
 {
@@ -15,10 +17,12 @@ WorkerThread::~WorkerThread()
     m_thread->join();
 }
 
+
 bool WorkerThread::enqueue(const Task& task)
 {
     return m_tasks.push(task);
 }
+
 
 void WorkerThread::run()
 {
