@@ -1,6 +1,7 @@
 #pragma once
 #include <boost/atomic.hpp>
 #include <boost/thread.hpp>
+#include <new>
 
 namespace core
 {

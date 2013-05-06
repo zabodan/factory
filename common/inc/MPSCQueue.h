@@ -1,5 +1,6 @@
 #pragma once
 #include <boost/atomic.hpp>
+#include <new>
 
 namespace core
 {

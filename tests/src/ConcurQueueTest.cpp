@@ -1,9 +1,9 @@
-#define BOOST_TEST_MODULE ConcurQueueTest
-#include <boost/test/unit_test.hpp>
-
 #include "MPSCQueue.h"
 #include "MPMCQueue.h"
 #include "Singleton.h"
+
+#define BOOST_TEST_MODULE ConcurQueueTest
+#include <boost/test/unit_test.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/atomic.hpp>
 #include <iostream>

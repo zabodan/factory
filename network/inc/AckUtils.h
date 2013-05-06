@@ -42,7 +42,7 @@ namespace core
 
         // call func for each acknowledged seqNum
         template <class Fn>
-        void forEachAckedSeqNum(Fn& func) const;
+        void forEachAckedSeqNum(Fn func) const;
 
     private:
 
@@ -97,7 +97,7 @@ namespace core
 
 
     template <class BitsType> template <class Fn>
-    inline void basic_ack<BitsType>::forEachAckedSeqNum(Fn& func) const
+    inline void basic_ack<BitsType>::forEachAckedSeqNum(Fn func) const
     {
         func(m_lastSeqNum);
         for (uint16_t delta = 0; delta < cMaxDelta; ++delta)
@@ -133,7 +133,7 @@ namespace core
         
         // call func for each acknowledged seqNum
         template <class Fn>
-        void forEachAckedSeqNum(Fn& func) const;
+        void forEachAckedSeqNum(Fn func) const;
 
     private:
 
@@ -183,7 +183,7 @@ namespace core
 
 
     template <class Fn>
-    inline void ack49_t::forEachAckedSeqNum(Fn& func) const
+    inline void ack49_t::forEachAckedSeqNum(Fn func) const
     {
         uint16_t currSeqNum = lastSeqNum();
         

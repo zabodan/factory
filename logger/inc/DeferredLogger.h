@@ -17,7 +17,11 @@ namespace core
 
         void write(const LogLevel &level, const std::string &message, const SourceLocation &location) override
         {
-            m_serviceThread.enqueue(boost::bind(&ILogger::write, m_targetLogger, level, message, location));
+            //m_serviceThread.enqueue(boost::bind(&ILogger::write, m_targetLogger, level, message, location));
+            if (m_targetLogger)
+            {
+                m_serviceThread.enqueue([=]{ m_targetLogger->write(level, message, location); });
+            }
         }
 
         ILoggerPtr m_targetLogger;
